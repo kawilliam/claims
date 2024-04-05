@@ -53,10 +53,6 @@ public class AdminMenuController implements Initializable {
         Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.CLAIMS);
     }
 
-    private void onPolicy() {
-        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.POLICY);
-    }
-
     private void image() {
         Image image = new Image(getClass().getResourceAsStream("/claims/fxml/logoV3.png"));
         this.vostok.setImage(image);
