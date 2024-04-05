@@ -93,8 +93,22 @@ public class MyClaimsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         submit_btn.setOnAction(event -> onConfirm());
         populateClaimsTable();
+        defaultValues();
+        
+        clm_table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                updateDetailsPanel(newSelection);
+            }
+        });
+    }
+
+    private void defaultValues() {
+        client_lbl.setText("ClaimID:");
+        damage_lbl.setText("Damage:");
+        description_lbl.setText("");
         typeofdamage_choicebox.setItems(FXCollections.observableArrayList("Front-End", "Rear-End","Side","Totalled"));
         typeofdamage_choicebox.setValue("Front-End");
+
         fault_checkbox.setSelected(false);
         fault_checkbox.setOnAction(event -> {
              value = fault_checkbox.isSelected() ? 1 : 0;
@@ -102,14 +116,6 @@ public class MyClaimsController implements Initializable {
         totalled_checkbox.setSelected(false);
         totalled_checkbox.setOnAction(event -> {
              totalled = totalled_checkbox.isSelected() ? 1 : 0;
-        });
-        client_lbl.setText("ClaimID:");
-        damage_lbl.setText("Damage:");
-        description_lbl.setText("");
-        clm_table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                updateDetailsPanel(newSelection);
-            }
         });
     }
 
