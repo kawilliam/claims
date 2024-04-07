@@ -155,15 +155,29 @@ public class ClaimsDatabaseDriver {
         return resultSet;
     }
 
-    public ResultSet searchCustomerByAdvisorID(int ID) {
-        String sql = "SELECT DISTINCT Customers.* " +
-                 "FROM Customers " +
-                 "JOIN Claims ON Customers.ClientID = Claims.ClientID " +
-                 "WHERE Claims.AdvisorID = ?";
+    public ResultSet searchCustomerByAdvisorID(int AdvisorID) {
+        String sql = "SELECT DISTINCT c.*, " +
+                     "FROM Customers c " +
+                     "LEFT JOIN Claims cl ON c.ClientID = cl.ClientID " +
+                     "WHERE cl.AdvisorID = ?";
         ResultSet resultSet = null;
         try (PreparedStatement pstmt = this.conn.prepareStatement(sql)){
-            pstmt.setInt(1, ID);
-             resultSet = pstmt.executeQuery();  
+            pstmt.setInt(1, AdvisorID);
+            resultSet = pstmt.executeQuery();  
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
+    public ResultSet searchCustomerByClaimID(int ClaimID) {
+        String sql = "SELECT c.* FROM Customers AS c " +
+                     "JOIN Claims AS cl ON c.ClientID = cl.ClientID " +
+                     "WHERE cl.ClaimID = ?";
+        ResultSet resultSet = null;
+        try (PreparedStatement pstmt = this.conn.prepareStatement(sql)){
+            pstmt.setInt(1, ClaimID);
+             resultSet = pstmt.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
 import claims.models.Advisor;
@@ -51,9 +52,6 @@ public class AdvisorClaimsController implements Initializable {
     private Label descript_lbl;
 
     @FXML
-    private Label notes_lbl;
-
-    @FXML
     private TableColumn<Claims, Number> polID_col;
 
     @FXML
@@ -68,6 +66,37 @@ public class AdvisorClaimsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         populateClaimsTable();
+
+        clm_table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                updateDetailsPanel(newSelection);
+            }
+        });
+    }
+
+    private void updateDetailsPanel(Claims selectedClaim) {
+        if (selectedClaim != null) {
+            Customer selectedClient = Model.getInstance().getCustomerByClaimID(selectedClaim.getClaimID());
+            if (selectedClient != null) {
+                clientname_lbl.setText(selectedClient.getFirstName() + " " + selectedClient.getLastName());
+            } else {
+                clientname_lbl.setText("Customer not found");
+            }
+
+            if (selectedClaim.getDateFilled() != null) {
+                try {
+                    datefilled_lbl.setText(selectedClaim.getDateFilled().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
+                } catch (DateTimeParseException e) {
+                    datefilled_lbl.setText("Date format error");
+                    e.printStackTrace();
+                }
+            } else {
+                datefilled_lbl.setText("Date not available");
+            }
+
+            dam_lbl.setText(selectedClaim.getDamage() != null ? selectedClaim.getDamage() : "N/A");
+            descript_lbl.setText(selectedClaim.getDescription() != null ? selectedClaim.getDescription() : "N/A");
+        }
     }
 
     public void populateClaimsTable() {

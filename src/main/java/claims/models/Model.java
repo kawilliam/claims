@@ -109,6 +109,42 @@ public class Model {
         }
     }
 
+    public Customer getCustomerByClaimID(int ClaimID) {
+        System.out.println("Getting customer details for claim ID: " + ClaimID);
+        ResultSet resultSet = ClaimsDatabaseDriver.searchCustomerByClaimID(ClaimID);
+
+        if (resultSet == null) {
+            System.out.println("No results returned for claim ID: " + ClaimID);
+            return null;
+        }
+
+        Customer c = null;
+        try {
+            if (resultSet.next()){
+                c = new Customer();
+                c.setFirstName(resultSet.getString("FirstName"));
+                c.setLastName(resultSet.getString("LastName"));
+                c.setUsername(resultSet.getString("Username"));
+                c.setAddress(resultSet.getString("Address"));
+                c.setEmail(resultSet.getString("Email"));
+                c.setPhoneNumber(resultSet.getString("Phone"));
+                c.setUserID(resultSet.getInt("ClientID"));
+                c.setGender(resultSet.getString("Sex"));
+                c.setAge(resultSet.getInt("Age"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return c;
+    }
 
 
     public ObservableList<Customer> getCustomersByAdvisor(int ID) {

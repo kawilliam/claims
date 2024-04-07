@@ -24,9 +24,9 @@
         </columns>
       </TableView>
       <Label layoutX="28.0" layoutY="401.0" styleClass="sub-title" text="Details" AnchorPane.bottomAnchor="320.0" AnchorPane.leftAnchor="20.0" />
-      <HBox prefHeight="200.0" prefWidth="810.0" styleClass="detail-box" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0">
+      <HBox prefHeight="200.0" prefWidth="540.0" styleClass="detail-box" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0">
          <children>
-            <VBox prefHeight="270.0" prefWidth="200.0" styleClass="detail-box-sub1">
+            <VBox prefHeight="270.0" prefWidth="160.0" styleClass="detail-box-sub1">
                <children>
                   <Label fx:id="clientname_lbl" text="Joe Green" />
                   <Label fx:id="datefilled_lbl" text="March 10th 2024" />
@@ -36,13 +36,7 @@
             <VBox prefHeight="270.0" prefWidth="310.0" styleClass="detail-box-sub2">
                <children>
                   <Label styleClass="detail-box-sub2-title" text="Description:" />
-                  <Label fx:id="descript_lbl" alignment="TOP_CENTER" prefHeight="150.0" prefWidth="290.0" text="Loremixum est dolerit quamibet sero, vincitrum per aspera ad astra, aquavit ex libris quam outis incendio. Falsidicum perennium, gloriatus et carpe noctem, vivamus meridium et lux vitæ. Scriptorium delenda, ambulatrum virentis, quantum leapus in abyssum. Miraculatus in finitum, ex nihilo nihil fit, perpetuum mobile ad infinitum." wrapText="true" />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="200.0" styleClass="detail-box-sub2">
-               <children>
-                  <Label styleClass="detail-box-sub2-title" text="Notes:" />
-                  <Label fx:id="notes_lbl" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="150.0" text="fwfwerfes" wrapText="true" />
+                  <Label fx:id="descript_lbl" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="290.0" text="Loremixum est dolerit quamibet sero, vincitrum per aspera ad astra, aquavit ex libris quam outis incendio. Falsidicum perennium, gloriatus et carpe noctem, vivamus meridium et lux vitæ. Scriptorium delenda, ambulatrum virentis, quantum leapus in abyssum. Miraculatus in finitum, ex nihilo nihil fit, perpetuum mobile ad infinitum." wrapText="true" />
                </children>
             </VBox>
          </children>

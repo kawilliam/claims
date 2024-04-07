@@ -27,7 +27,7 @@
 .detail-box-sub1 {
     -fx-font-size: 1.5em;
     font-size: 1.4em;
-    -fx-padding: 55px 10px 10px 30px;
+    -fx-padding: 55px 5px 10px 5px;
     padding: 10px 10px 0px 10px;
 }
 
@@ -43,8 +43,6 @@
     font-size: 1.4em;
 }
 
-
-
 .table {
     -fx-effect: dropshadow(three-pass-box, #AAAAAA, 5, 0, 0, 4);
     -fx-background-color: white;
@@ -57,8 +55,8 @@
 }
 
 #c {
-    -fx-border-color:#000;
-    border-color: #000;
+    -fx-border-color:#f4f4f4;
+    border-color: #f4f4f4;
     -fx-border-width: 0px 0px 1px 0px;
     border-width: 0px 0px 1px 0px;
     -fx-border:none;
@@ -71,4 +69,5 @@
     font-size: 1em;
     -fx-font-weight: 100;
     font-weight: 100;
+    -fx-alignment: center;
 }
